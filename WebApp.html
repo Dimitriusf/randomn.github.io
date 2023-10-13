@@ -1,71 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Random Number Generator</title>
-    <style>
-        #numbers {
-            display: flex;
-            flex-direction: column;
-        }
-        .row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .row > * {
-            margin-right: 10px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Random Number Generator</h1>
-    <button onclick="generateRandomNumbers()">Generate Random Numbers</button>
-    <div id="numbers"></div>
-
-    <script>
-        function generateRandomNumbers() {
-            document.getElementById("numbers").innerHTML = "";
-            for (var i = 0; i < 10; i++) {
-                var num1 = Math.floor(Math.random() * 90) + 10;
-                var num2 = Math.floor(Math.random() * 90) + 10;
-
-                var row = document.createElement("div");
-                row.className = "row";
-
-                var p = document.createElement("p");
-                p.innerHTML = (i+1) + ". " + num1 + " " + num2; // Added row number
-                row.appendChild(p);
-
-                var input = document.createElement("input");
-                input.type = "number";
-                input.min = "100";
-                input.max = "8100";
-                row.appendChild(input);
-
-                var result = document.createElement("p"); // Moved this line up
-                row.appendChild(result);
-
-                var button = document.createElement("button");
-                button.innerHTML = "Check Number";
-                button.onclick = function(num1, num2, input, result) {
-                    return function() { checkNumber(num1, num2, input, result); };
-                }(num1, num2, input, result);
-                row.appendChild(button);
-
-                document.getElementById("numbers").appendChild(row);
-            }
-        }
-
-        function checkNumber(num1, num2, input, result) {
-            var userNum = input.value;
-            var correctResult = num1 * num2;
-
-            if (userNum == correctResult) {
-                result.innerHTML = "Correct!";
-            } else {
-                result.innerHTML = "Try again! You can do it!";
-            }
-        }
-    </script>
-</body>
-</html>
+name: hello-world
+on: push
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Hello World!"
